@@ -8,18 +8,11 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import ProductForm from './ProductForm'
+import '../css/ProductStyles.css'
 
 
 const useStyles = makeStyles({
-    root: {
-      minWidth: 200,
-      maxWidth: 300,
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
+    
     title: {
       fontSize: 14,
     },
@@ -46,7 +39,7 @@ const Product = (props) => {
     return (
         <div>
             
-            <Card className={classes.root} style={{display:(deleted ? 'none' : 'block')}}>
+            <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
                     <Typography variant="h5" component="h2">
                         {props.name}

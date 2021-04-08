@@ -42,11 +42,20 @@ const ManageProducts = () => {
                     </div>
                 </div>
 
-                <div style={{display: 'flex', flexDirection:'row', padding: '50px'}}>
+                <div style={{display: 'flex', flexDirection:'row', padding: '50px', flexFlow: 'row wrap'}}>
 
                     <Product name='Produktas1' price='100$' about='Something about a product'/>
                     <Product name='Produktas1' price='100$' about='Something about a product'/>
                     <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+
                 </div>
             </Paper>
         </div>

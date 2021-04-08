@@ -5,19 +5,18 @@ import '../css/ProductFormStyles.css'
 
 const ProductForm = () => {
     return (
-        <div>
+        <div className='form'>
             <form>
-                <TextField id="standard-basic" label="Prekės pavadinimas" />
-                <TextField id="standard-basic" label="Kaina" />
-                <TextField id="standard-basic" label="Kilmės šalis" />
-                <TextField id="standard-basic" label="Svoris" />
+                <TextField className='textField' label="Prekės pavadinimas" />
+                <TextField className='textField' label="Kaina" />
+                <TextField className='textField' label="Kilmės šalis" />
+                <TextField className='textField' label="Svoris" />
                 <TextField
-                    id="standard-textarea"
-                    label="Multiline Placeholder"
-                    placeholder="Placeholder"
+                    className='textField'
+                    label="Aprašymas"
                     multiline
                 />
-                <TextField id="standard-basic" label="Tiekėjas" />
+                <TextField className='textField' label="Tiekėjas" />
                 <Button className='button'>Spausti</Button>
             </form>
 
