@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
 import Product from './Product'
 import AddIcon from '@material-ui/icons/Add';
@@ -7,8 +7,27 @@ import ProductForm from './ProductForm'
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton'
 import '../css/ManageProductsStyle.css'
-
+import axios from "axios";
 const ManageProducts = () => {
+
+    const [products,setProducts]=useState([]);
+
+    useEffect(() => { 
+
+            axios
+            .post("http://localhost:5000/products/getProduct")
+            .then((response) => {
+              const data = response.data;
+              setProducts(data);
+            })
+            .catch(() => {
+              alert("ERROR");
+            });
+
+
+    });
+
+    
 
     const [isAddClicked, setIsAddClicked] = useState(false)
 
@@ -41,20 +60,15 @@ const ManageProducts = () => {
                         <ProductForm/>
                     </div>
                 </div>
-
+                
                 <div style={{display: 'flex', flexDirection:'row', padding: '50px', flexFlow: 'row wrap'}}>
 
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
-                    <Product name='Produktas1' price='100$' about='Something about a product'/>
+                {products.map(product=> (
+
+                  <Product name={product.Name} price={product.Price} about={product.Description} id={product._id}/>
+                ))}          
+
+
 
                 </div>
             </Paper>

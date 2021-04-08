@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import ProductForm from './ProductForm'
+import {deleteProduct} from "./PruductFunctions";
 import '../css/ProductStyles.css'
 
 
@@ -32,8 +33,11 @@ const Product = (props) => {
         setIsEdit(!isEdit)
     }
 
-    const onDeleteClick = ()=>{
+    const onDeleteClick = (id)=>{
         setDeleted(true)
+        deleteProduct(id).then((res) => {
+          });
+
     }
 
     return (
@@ -57,14 +61,14 @@ const Product = (props) => {
                     <IconButton aria-label="edit" onClick={onEditClick}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" onClick={onDeleteClick}>
+                    <IconButton aria-label="delete" onClick={() =>onDeleteClick(props.id)}>
                         <DeleteIcon />
                     </IconButton>
                     
                 </CardActions>
 
                 <div style={{display: (isEdit ? 'block' : 'none')}}>
-                    <ProductForm/>
+                    <ProductForm update={true} id ={props.id}/>
                 </div>
 
             </Card>
