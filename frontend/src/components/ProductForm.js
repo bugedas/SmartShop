@@ -15,41 +15,45 @@ const ProductForm = (props) => {
     const [supplier,setSupplier] = useState("");
 
     const submitData = () =>{
-
-        if(props.update==true){
-            const updatedProduct ={
-                id: props.id,
-                name: name,
-                price: price,
-                madeBy: madeBy,
-                weight: weight,
-                description: description,
-                supplier: supplier,
-
-            }
-
-            updateProduct(updatedProduct).then((res)=>{
-                window.location.reload();
-            });
-           
-        
+        if( name == "" || price == ""){
+            alert("Pavadinimas ir Kaina privalo būti užildyti")
         }
         else{
-            const newProduct ={
-                name: name,
-                price: price,
-                madeBy: madeBy,
-                weight: weight,
-                description: description,
-                supplier: supplier,
+            if(props.update==true){
+                const updatedProduct ={
+                    id: props.id,
+                    name: name,
+                    price: price,
+                    madeBy: madeBy,
+                    weight: weight,
+                    description: description,
+                    supplier: supplier,
 
+                }
+
+                updateProduct(updatedProduct).then((res)=>{
+                    window.location.reload();
+                });
+            
+            
             }
+            else{
+                const newProduct ={
+                    name: name,
+                    price: price,
+                    madeBy: madeBy,
+                    weight: weight,
+                    description: description,
+                    supplier: supplier,
 
-            addProduct(newProduct).then((res)=>{
-                window.location.reload();
-                
-            });
-           }
+                }
+
+                addProduct(newProduct).then((res)=>{
+                    window.location.reload();
+                    
+                });
+            }
+        }
  
     }
 

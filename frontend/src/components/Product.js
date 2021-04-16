@@ -10,6 +10,8 @@ import EditIcon from '@material-ui/icons/Edit'
 import ProductForm from './ProductForm'
 import {deleteProduct} from "./PruductFunctions";
 import '../css/ProductStyles.css'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
 const useStyles = makeStyles({
@@ -34,9 +36,27 @@ const Product = (props) => {
     }
 
     const onDeleteClick = (id)=>{
-        setDeleted(true)
-        deleteProduct(id).then((res) => {
+        confirmAlert({
+            title: 'Ar tikrai norite ištrinti prekę?',
+            message: 'Ar tikrai norite ištrinti prekę?',
+            buttons: [
+              {
+                label: 'Taip',
+                onClick: () => {
+                    setDeleted(true)
+                    deleteProduct(id).then((res) => {
+                    });
+                }
+              },
+              {
+                label: 'Ne',
+                onClick: () => {}
+              }
+            ]
           });
+        /* setDeleted(true)
+        deleteProduct(id).then((res) => {
+          }); */
 
     }
 
