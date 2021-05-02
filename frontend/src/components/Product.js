@@ -12,7 +12,7 @@ import {deleteProduct} from "./PruductFunctions";
 import '../css/ProductStyles.css'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     
@@ -60,14 +60,18 @@ const Product = (props) => {
 
     }
 
+    
+
     return (
         <div>
             
             <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
-                    <Typography variant="h5" component="h2">
-                        {props.name}
-                    </Typography>
+                    <Link to={"/product/:"+props.id}>
+                        <Typography variant="h5" component="h2">
+                            {props.name}
+                        </Typography>
+                    </Link>
                     <Typography className={classes.pos} color="textSecondary">
                         {props.price}
                     </Typography>
