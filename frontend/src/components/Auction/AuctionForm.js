@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {addProduct,updateProduct} from "./PruductFunctions";
-import '../css/ProductFormStyles.css'
+import {addAuction,updateAuction} from "./AuctionFunctions";
+
+import '../../css/ProductFormStyles.css'
 import { AlternateEmail } from "@material-ui/icons";
 
-const ProductForm = (props) => {
+const AuctionForm = (props) => {
+
+
     const [name,setName] = useState("");
     const [price,setPrice] = useState("");
     const [madeBy,setMadeBy] = useState("");
@@ -15,11 +18,11 @@ const ProductForm = (props) => {
 
     const submitData = () =>{
         if( name == "" || price == ""){
-            alert("Pavadinimas ir Kaina privalo būti užildyti")
+            alert("Pavadinimas ir Kaina privalo būti užpildyti")
         }
         else{
             if(props.update==true){
-                const updatedProduct ={
+                const updatedAuction ={
                     id: props.id,
                     name: name,
                     price: price,
@@ -30,14 +33,14 @@ const ProductForm = (props) => {
 
                 }
 
-                updateProduct(updatedProduct).then((res)=>{
+                updateAuction(updatedAuction).then((res)=>{
                     window.location.reload();
                 });
             
             
             }
             else{
-                const newProduct ={
+                const newAuction ={
                     name: name,
                     price: price,
                     madeBy: madeBy,
@@ -47,7 +50,7 @@ const ProductForm = (props) => {
 
                 }
 
-                addProduct(newProduct).then((res)=>{
+                addAuction(newAuction).then((res)=>{
                     window.location.reload();
                     
                 });
@@ -55,6 +58,8 @@ const ProductForm = (props) => {
         }
  
     }
+
+
 
     return (
         <div className='form'>
@@ -73,11 +78,10 @@ const ProductForm = (props) => {
                 <TextField className='textField' label="Tiekėjas" value={supplier} onChange={e => setSupplier(e.target.value)} />
 
                 <Button className='button' onClick={submitData}>Submit</Button>
-
             </form>
-            
+
         </div>
     )
 }
 
-export default ProductForm
+export default AuctionForm
