@@ -15,6 +15,9 @@ const Menu = () => {
                 <Link to="/products">
                     <MenuItem onClick='#'>Prekės</MenuItem>
                 </Link>
+                <Link to="/auctions">
+                    <MenuItem onClick='#'>Aukcionai</MenuItem>
+                </Link>
                     <MenuItem onClick='#'>Tiekėjai</MenuItem>
                     <MenuItem onClick='#'>Žemėlapis</MenuItem>
                 </div>
