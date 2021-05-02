@@ -15,7 +15,12 @@ const Menu = () => {
                 <Link to="/products">
                     <MenuItem onClick='#'>Prekės</MenuItem>
                 </Link>
-                    <MenuItem onClick='#'>Tiekėjai</MenuItem>
+                <Link to="/auctions">
+                    <MenuItem onClick='#'>Aukcionai</MenuItem>
+                </Link>
+                <Link to="/recommended">
+                    <MenuItem onClick='#'>Rekomenduojamos Prekės</MenuItem>
+                </Link>
                     <MenuItem onClick='#'>Žemėlapis</MenuItem>
                 </div>
             </Paper>
