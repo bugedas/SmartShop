@@ -41,3 +41,5 @@ export const deleteAuction = (id) => {
         console.log(err);
       });
   }
+
+  

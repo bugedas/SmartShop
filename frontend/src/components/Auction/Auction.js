@@ -66,17 +66,21 @@ const Auction = (props) => {
         <div>
             <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
-                    <Link to={"/auction/:"+props.id}>
+                    <Link to={"/auction/"+props.id}>
                         <Typography variant="h5" component="h2">
-                            {props.name}
+                           Aukcionas: {props.name}
                         </Typography>
                     </Link>
                     <Typography className={classes.pos} color="textSecondary">
-                        {props.price}
+                       pradinė kaina: {props.price}
                     </Typography>
 
                     <Typography variant="body2" component="p">
                         {props.about}
+                    </Typography>
+
+                    <Typography variant="body2" component="p">
+                       Būsena {props.state}
                     </Typography>
                 </CardContent>
 

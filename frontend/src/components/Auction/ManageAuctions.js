@@ -15,20 +15,18 @@ const ManageAuctions = () => {
 
     const [auctions,setAuctions]=useState([]);
 
-    useEffect(() => { 
+     useEffect(() => { 
 
-            axios
-            .post("http://localhost:5000/auctions/getAuctions")
+             axios
+             .post("http://localhost:5000/auctions/getAuctions")
             .then((response) => {
-              const data = response.data;
-              setAuctions(data);
-            })
-            .catch(() => {
+               const data = response.data;
+               setAuctions(data);
+             })
+             .catch(() => {
               alert("ERROR");
-            });
-
-
-    });
+             });
+            })
 
 
     const [isAddClicked, setIsAddClicked] = useState(false)
@@ -70,7 +68,7 @@ const ManageAuctions = () => {
 
                 {auctions.map(auction=> (
 
-                  <Auction name={auction.Name} price={auction.Price} about={auction.Description} id={auction._id}/>
+                  <Auction name={auction.Name} price={auction.Price} about={auction.Description} id={auction._id} state={auction.State}/>
                 ))}          
 
                 </div>
