@@ -4,8 +4,10 @@ const cors = require("cors");
 
 const Product = require("../Schemas/Product");
 
-products.use(cors());
+const productEvaluation = require("../Schemas/Evaluation");
 
+
+products.use(cors());
 process.env.SECRET_KEY = "secret";
 
 products.post("/addProduct", function(req,res){
@@ -14,10 +16,10 @@ products.post("/addProduct", function(req,res){
     const data = {
         Name: req.body.name,
         Price: req.body.price,
-        MadeBy: req.body.madeBy,
+        Made_by: req.body.madeBy,
         Weight: req.body.weight,
         Description: req.body.description,
-        Supplier: req.body.supplier,
+        Suplier: req.body.supplier,
     }
     console.log("Data: ", data);
     Product.create(data)
@@ -45,6 +47,25 @@ products.post("/addProduct", function(req,res){
      
   
   })
+
+
+  
+  products.post("/getProductById", function(req,res){
+
+    Product.findOne({
+      _id : req.body.id
+    })
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+        console.log("error: ", daerrorta);
+      });
+     
+  
+  })
+
+
 
   products.post("/deleteProduct", function(req,res){
 
@@ -87,6 +108,26 @@ products.post("/addProduct", function(req,res){
    
   
   });
+ products.post("/addProductEvaluation", function(req,res){
+
+
+    const data = {
+        Rating: req.body.rating,
+        Comment: req.body.comment,
+        Date: Date(),
+        Product_Id: req.body.id
+    }
+    console.log("Data: ", data);
+    productEvaluation.create(data)
+    .then((user) => {
+      res.json({ status:"Added" });
+    })
+    .catch((err) => {
+      res.send("error: " + err);
+    });
+     
+  
+  })
 
 
 

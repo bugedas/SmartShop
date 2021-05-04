@@ -67,7 +67,7 @@ const Product = (props) => {
             
             <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
-                    <Link to={"/product/:"+props.id}>
+                    <Link to={"/product/"+props.id}>
                         <Typography variant="h5" component="h2">
                             {props.name}
                         </Typography>

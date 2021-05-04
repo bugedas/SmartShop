@@ -8,6 +8,7 @@ import Auctions from './components/Auction/ManageAuctionsPage';
 import AuctionPage from './components/Auction/AuctionPage';
 import Recommended from './components/RecommendedPage';
 import MakeOrder from './components/MakeOrderPage';
+
 const Main = () => {
   return (
     <Switch> {/* The Switch decides which component to show based on the current URL.*/}

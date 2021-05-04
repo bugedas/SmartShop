@@ -1,30 +1,27 @@
-import React, {useState} from 'react'
+
+import React, {useState,useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
 import Menu from '../Menu'
-
+import Auction from './Auction';
+import axios from "axios";
 const AuctionPage = (props) => {
 
-    // GET PRODUCT BY ID - 
-    //----------------------------
-    //id = props.match.params.id
-    //----------------------------
 
-    //const [products,setProducts]=useState([]);
+    const [auctions,setAuctions]=useState([]);
 
-    /* useEffect(() => { 
-
+     useEffect(() => { 
             axios
-            .post("http://localhost:5000/products/getProduct")
+            .post("http://localhost:5000/auctions/getAuctionById",{
+                id:props.match.params.id
+            })
             .then((response) => {
               const data = response.data;
-              setProducts(data);
+              setAuctions(data);
             })
             .catch(() => {
               alert("ERROR");
             });
-
-
-    }); */
+    }); 
 
 
     return (
@@ -34,13 +31,13 @@ const AuctionPage = (props) => {
                 <Menu/>
                 <Paper elevation={1}>
 
-                    <h1>Prekės ID: {props.match.params.id}</h1>
-                    <h2>Prekės pavadinimas</h2>
-                    <h3>Kaina</h3>
-                    <h3>Kilmės šalis</h3>
-                    <h3>Svoris</h3>
-                    <h3>Aprašymas</h3>
-                    <h3>Tiekėjas</h3>
+                    <h1>Aukcionas dėl prekės: {auctions.Name} </h1>
+                    <h3>Pradinė Kaina: {auctions.Name}</h3>
+                    <h3>Dabartinė Kaina:</h3>
+                    <h3>Svoris: {auctions.Weight}</h3>
+                    <h3>Aprašymas: {auctions.Description}</h3>
+                    <h3>Tiekėjas: {auctions.Suplier}</h3>
+                    <h3>Būsena: {auctions.State}</h3>
 
                 </Paper>
             </Paper>

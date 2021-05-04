@@ -41,3 +41,15 @@ export const deleteProduct = (id) => {
         console.log(err);
       });
   }
+
+  export const addProductEvaluation = (newEvaluation) => {
+    return axios
+      .post("http://localhost:5000/products/addProductEvaluation", {
+        rating: newEvaluation.rating,
+        comment: newEvaluation.comment,
+        id: newEvaluation.id,
+      })
+      .then((response) => {
+        alert(" Ivertinimas Pridėtas")
+      });
+  };
