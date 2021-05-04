@@ -4,8 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
 import {addProductEvaluation} from "./PruductFunctions";
+import { Link } from "react-router-dom";
 
 const EvaluationForm = (props) => {
 
@@ -54,6 +54,7 @@ const EvaluationForm = (props) => {
 
                     <Button className='button' onClick={submitEvaluation}>Vertinti</Button>
 
+                    <Link to="/MakeOrder" className="btn btn-primary">Užsakyti</Link>    
                 </>
             )
             :(

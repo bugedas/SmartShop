@@ -1,3 +1,4 @@
+
 import React, {useState,useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
 import Menu from '../Menu'
@@ -5,14 +6,10 @@ import Auction from './Auction';
 import axios from "axios";
 const AuctionPage = (props) => {
 
- 
-  
- 
 
     const [auctions,setAuctions]=useState([]);
 
      useEffect(() => { 
-
             axios
             .post("http://localhost:5000/auctions/getAuctionById",{
                 id:props.match.params.id
@@ -24,8 +21,6 @@ const AuctionPage = (props) => {
             .catch(() => {
               alert("ERROR");
             });
-
-
     }); 
 
 
@@ -43,6 +38,7 @@ const AuctionPage = (props) => {
                     <h3>Aprašymas: {auctions.Description}</h3>
                     <h3>Tiekėjas: {auctions.Suplier}</h3>
                     <h3>Būsena: {auctions.State}</h3>
+
                 </Paper>
             </Paper>
 

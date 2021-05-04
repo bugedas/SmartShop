@@ -3,15 +3,11 @@ import Paper from '@material-ui/core/Paper'
 import Menu from './Menu'
 import EvaluationForm from './EvaluationForm'
 import axios from "axios";
+
 const ProductPage = (props) => {
-
-
-
-  
     const [product,setProduct]=useState([]);
 
      useEffect(() => { 
-
             axios
             .post("http://localhost:5000/products/getProductById",{
                 id:props.match.params.id
@@ -23,12 +19,7 @@ const ProductPage = (props) => {
             .catch(() => {
               alert("ERROR");
             });
-
-
-    }); 
-
-
-
+    });
 
     return (
         <div>

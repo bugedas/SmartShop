@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {addProduct,updateProduct} from "./PruductFunctions";
-
 import '../css/ProductFormStyles.css'
 import { AlternateEmail } from "@material-ui/icons";
 
@@ -57,9 +56,6 @@ const ProductForm = (props) => {
  
     }
 
-
-
-
     return (
         <div className='form'>
             <form>
@@ -77,8 +73,9 @@ const ProductForm = (props) => {
                 <TextField className='textField' label="Tiekėjas" value={supplier} onChange={e => setSupplier(e.target.value)} />
 
                 <Button className='button' onClick={submitData}>Submit</Button>
-            </form>
 
+            </form>
+            
         </div>
     )
 }

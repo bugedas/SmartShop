@@ -91,7 +91,6 @@ const Auction = (props) => {
                     <IconButton aria-label="delete" onClick={() =>onDeleteClick(props.id)}>
                         <DeleteIcon />
                     </IconButton>
-                    
                 </CardActions>
 
                 <div style={{display: (isEdit ? 'block' : 'none')}}>
