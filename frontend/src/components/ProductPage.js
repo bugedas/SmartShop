@@ -2,9 +2,22 @@ import React, {useState, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
 import Menu from './Menu'
 import EvaluationForm from './EvaluationForm'
+import Evaluation from './Evaluation'
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
 import axios from "axios";
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      maxWidth: '100ch',
+      backgroundColor: theme.palette.background.paper,
+      margin: 'auto',
+    },
+  }));
+
 const ProductPage = (props) => {
+    const classes = useStyles();
     const [product,setProduct]=useState([]);
 
      useEffect(() => { 
@@ -37,6 +50,10 @@ const ProductPage = (props) => {
 
                 </Paper>
                 <EvaluationForm productId={props.match.params.id} bought={true}/>
+                <List className={classes.root}>
+                    <Evaluation rating={3} title="Komentaro pavadinimas" name="Vardas" description="Komentaras apie preke"/>
+                    <Evaluation rating={1} title="Labai ilgas komentaro pavadinimas, nes reikia suzinot kaip atrodo" name="Vardas Pavarde" description="Kitoks ir gerokai ilgesnis komentaras apie preke tam, kad pasiziuretume kaip atrodo ilgas komentaras"/>
+                </List>
             </Paper>
         </div>
     )
