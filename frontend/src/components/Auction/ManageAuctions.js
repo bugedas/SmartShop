@@ -64,16 +64,11 @@ const ManageAuctions = () => {
                 </div>
                 
                 <div style={{display: 'flex', flexDirection:'row', padding: '50px', flexFlow: 'row wrap'}}>
-
-                {auctions.map(auction=> (
-
-
-                <Auction name={auction.Name} price={auction.Price} about={auction.Description} id={auction._id} state={auction.State}/>
-
-
+                    {auctions.map(auction=> (
+                        <Auction name={auction.Name} price={auction.Price} about={auction.Description} id={auction._id} state={auction.State}/>
+                    ))}
                 </div>
             </Paper>
-
 
         </div>
     )
