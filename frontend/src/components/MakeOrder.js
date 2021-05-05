@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Paper from '@material-ui/core/Paper'
 import Menu from './Menu'
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
+import PayPal from './PayPal';
 
 const MakeOrder = () => {
-    return (
+    
+    const [checkout, setCheckOut] = useState(false)
+
+    return (                
         <div>
+            {checkout ? (
+                <PayPal />
+            ) : (
             <Paper elevation={0}>
                 <Menu/>
 
@@ -21,10 +28,11 @@ const MakeOrder = () => {
                     <h3>Kilmės šalis</h3>
                     <h3>Svoris</h3>
                     <h3>Aprašymas</h3>
-                    <h3>Tiekėjas</h3>
-                    <Button className='button'>Užsakyti</Button>
-                    <Link to="/products" className="btn btn-primary">Atšaukti</Link>    
+                    <h3>Tiekėjas</h3>                    
+                    <Button onClick={() => {setCheckOut(true);}} className='button'>Užsakyti</Button>
+                    <Link to="/products" className="btn btn-primary">Atšaukti</Link>                
             </Paper>
+            )}
         </div>
     )
 }
