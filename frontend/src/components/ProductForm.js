@@ -48,8 +48,6 @@ const ProductForm = (props) => {
                 }
 
                 addProduct(newProduct).then((res)=>{
-                    window.location.reload();
-                    
                 });
             }
         }
