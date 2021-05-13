@@ -35,6 +35,7 @@ const Product = (props) => {
         setIsEdit(!isEdit)
     }
 
+
     const onDeleteClick = (id)=>{
         confirmAlert({
             title: 'Ar tikrai norite ištrinti prekę?',

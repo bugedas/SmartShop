@@ -18,7 +18,7 @@ const Main = () => {
       <Route exact path='/product/:id' component={ProductPage} ></Route>
       <Route exact path='/auction/:id' component={AuctionPage} ></Route>
       <Route exact path='/recommended' component={Recommended}></Route>
-      <Route exact path='/MakeOrder' component={MakeOrder}></Route>
+      <Route exact path='/MakeOrder/:id' component={MakeOrder}></Route>
     </Switch>
   );
 }

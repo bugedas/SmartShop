@@ -55,11 +55,11 @@ const ProductPage = (props) => {
                       <h3>Kaina: {product.Price}</h3>
                       <h3>Kilmės šalis: {product.Made_by} </h3>
                       <h3>Svoris: {product.Weight}</h3>
-                      <h3>Aprašymas: {product.Description}s</h3>
+                      <h3>Aprašymas: {product.Description}</h3>
                       <h3>Tiekėjas: {product.Suplier} </h3>
 
                     <div>
-                        <Link to="/MakeOrder" className="btn btn-primary">Užsakyti</Link>
+                        <Link to={"/MakeOrder/"+props.match.params.id} className="btn btn-primary">Užsakyti</Link>
                     </div>
                   </div>
 
