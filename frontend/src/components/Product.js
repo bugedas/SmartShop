@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ProductForm from './ProductForm'
 import {deleteProduct} from "./PruductFunctions";
 import '../css/ProductStyles.css'
@@ -60,14 +61,11 @@ const Product = (props) => {
 
     }
 
-    
-
     return (
         <div>
-            
             <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
-                    <Link to={"/product/:"+props.id}>
+                    <Link to={"/product/"+props.id}>
                         <Typography variant="h5" component="h2">
                             {props.name}
                         </Typography>
@@ -89,12 +87,16 @@ const Product = (props) => {
                         <DeleteIcon />
                     </IconButton>
                     
+                    <Link to={"/MakeOrder/"+props.id}>
+                    <IconButton aria-label="AddShoppingCart">
+                    <AddShoppingCartIcon />
+                    </IconButton>
+                    </Link>
                 </CardActions>
 
                 <div style={{display: (isEdit ? 'block' : 'none')}}>
                     <ProductForm update={true} id ={props.id}/>
                 </div>
-
             </Card>
 
         </div>

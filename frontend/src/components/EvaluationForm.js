@@ -4,7 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {addProductEvaluation} from "./PruductFunctions";
 import { Link } from "react-router-dom";
+
 const EvaluationForm = (props) => {
 
     const [value, setValue] = useState(2);
@@ -15,6 +17,17 @@ const EvaluationForm = (props) => {
             alert("Aprašymas turi būti ilgesnis nei 3 simboliai!")
         }
         else{
+            const newEvaluation ={
+                rating: value,
+                comment: description,
+                id: props.productId,
+            }
+
+            addProductEvaluation(newEvaluation).then((res)=>{
+                window.location.reload();
+            });
+
+
             
         }
     }
@@ -33,14 +46,15 @@ const EvaluationForm = (props) => {
 
                     <TextField
                         className='textField'
-                        label="Aprašymas"
+                        label="Pridėti komentarą"
                         value={description} 
                         onChange={e => setDescription(e.target.value)}
                         multiline
                     />
 
                     <Button className='button' onClick={submitEvaluation}>Vertinti</Button>
-                    <Link to="/MakeOrder" className="btn btn-primary">Užsakyti</Link>    
+
+                    <Link to={"/MakeOrder/"+props.productId} className="btn btn-primary">Užsakyti</Link>    
                 </>
             )
             :(

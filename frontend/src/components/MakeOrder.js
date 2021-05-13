@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
 import Menu from './Menu'
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const MakeOrder = () => {
+const MakeOrder = (props) => {
+    const [product,setProduct]=useState([]);
+
+     useEffect(() => { 
+            axios
+            .post("http://localhost:5000/products/getProductById",{
+                id:props.match.params.id
+            })
+            .then((response) => {
+              const data = response.data;
+              setProduct(data);
+            })
+            .catch(() => {
+              alert("ERROR");
+            });
+    });
+    
     return (
         <div>
             <Paper elevation={0}>
@@ -13,15 +30,16 @@ const MakeOrder = () => {
                 <h1>Užsakyti</h1>
 
                 {/* ---------------------------------------------------
-                    Gaunam prekę iš backendo arba iš prekės lango, parodom ją čia ir paklausiam ar vartotojas nori ją užsakyti
+                    Gaunam prekę iš backendo parodom ją čia ir paklausiam ar vartotojas nori ją užsakyti
                 -------------------------------------------------------- */}
-                    <h1>Prekės ID:</h1>
-                    <h2>Prekės pavadinimas</h2>
-                    <h3>Kaina</h3>
-                    <h3>Kilmės šalis</h3>
-                    <h3>Svoris</h3>
-                    <h3>Aprašymas</h3>
-                    <h3>Tiekėjas</h3>
+                    <h1>Prekės ID: {props.match.params.id}</h1>
+                    <h2>Prekės pavadinimas: {product.Name}</h2>
+                    <h3>Kaina: {product.Price}</h3>
+                    <h3>Kilmės šalis: {product.Made_by} </h3>
+                    <h3>Svoris: {product.Weight}</h3>
+                    <h3>Aprašymas: {product.Description}s</h3>
+                    <h3>Tiekėjas: {product.Suplier} </h3>
+
                     <Button className='button'>Užsakyti</Button>
                     <Link to="/products" className="btn btn-primary">Atšaukti</Link>    
             </Paper>

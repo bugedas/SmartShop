@@ -47,7 +47,6 @@ const AuctionForm = (props) => {
                     weight: weight,
                     description: description,
                     supplier: supplier,
-
                 }
 
                 addAuction(newAuction).then((res)=>{

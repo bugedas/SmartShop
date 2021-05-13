@@ -12,9 +12,6 @@ const MakeOrderPage = () => {
                 <MakeOrder/>
    
             </Paper>
-
-
-           
         </div>
     )
 }
