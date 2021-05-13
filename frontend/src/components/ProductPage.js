@@ -30,7 +30,7 @@ const ProductPage = (props) => {
     const classes = useStyles();
     const [product,setProduct]=useState([]);
 
-     useEffect(() => { 
+     useEffect(() => {
             axios
             .post("http://localhost:5000/products/getProductById",{
                 id:props.match.params.id
@@ -42,7 +42,7 @@ const ProductPage = (props) => {
             .catch(() => {
               alert("ERROR");
             });
-    });
+    },[]);
 
     return (
         <div>
@@ -65,7 +65,7 @@ const ProductPage = (props) => {
 
                 </Paper>
                 <EvaluationForm productId={props.match.params.id} bought={true}/>
-
+                {console.log(product)}
                 <Paper elevation={2}>
                   <List className={classes.root}>
                       {/* Pakeisti kad suktu cikla per visus to produkto komentarus */}

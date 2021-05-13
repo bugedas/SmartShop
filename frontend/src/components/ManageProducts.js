@@ -34,7 +34,7 @@ const ManageProducts = () => {
     const onAddClick = () =>{
         setIsAddClicked(true)
     }   
-    const onAddClose= () =>{
+    const onAddClose = () =>{
         setIsAddClicked(false)
     }   
 
