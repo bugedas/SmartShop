@@ -24,7 +24,8 @@ const MakeOrder = (props) => {
         .catch(() => {
           alert("ERROR");
         });
-    });
+},[]);
+
 
     return (                
         <div>
