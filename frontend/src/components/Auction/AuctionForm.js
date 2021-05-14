@@ -34,7 +34,6 @@ const AuctionForm = (props) => {
                 }
 
                 updateAuction(updatedAuction).then((res)=>{
-                    window.location.reload();
                 });
             
             
@@ -49,10 +48,7 @@ const AuctionForm = (props) => {
                     supplier: supplier,
                 }
 
-                addAuction(newAuction).then((res)=>{
-                    window.location.reload();
-                    
-                });
+                addAuction(newAuction).then((res)=>{});
             }
         }
  

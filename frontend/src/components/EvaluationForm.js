@@ -5,7 +5,9 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {addProductEvaluation} from "./PruductFunctions";
+import Paper from '@material-ui/core/Paper'
 import { Link } from "react-router-dom";
+import '../css/EvaluationFormStyle.css'
 
 const EvaluationForm = (props) => {
 
@@ -33,28 +35,28 @@ const EvaluationForm = (props) => {
     }
 
     return (
-        <div>
+        <div className="EvalFormWrap">
+            <Paper elevation={1}>
             {props.bought ? (
                 <>
-                    
-                    <Box component="fieldset" mb={3} borderColor="transparent">
-                        <Typography component="legend">Įvertinkite</Typography>
-                        <Rating name="simple-controlled" value={value} onChange={(event, newValue) => 
-                            {setValue(newValue);
-                        }} />
-                    </Box>
+                    <div className="EvalInsideWrap">
+                        <Box component="fieldset" mb={3} borderColor="transparent">
+                            <Typography component="legend">Įvertinkite</Typography>
+                            <Rating name="simple-controlled" value={value} onChange={(event, newValue) => 
+                                {setValue(newValue);
+                            }} />
+                        </Box>
 
-                    <TextField
-                        className='textField'
-                        label="Pridėti komentarą"
-                        value={description} 
-                        onChange={e => setDescription(e.target.value)}
-                        multiline
-                    />
+                        <TextField
+                            className='textField'
+                            label="Pridėti komentarą"
+                            value={description} 
+                            onChange={e => setDescription(e.target.value)}
+                            multiline
+                        />
 
-                    <Button className='button' onClick={submitEvaluation}>Vertinti</Button>
-
-                    <Link to={"/MakeOrder/"+props.productId} className="btn btn-primary">Užsakyti</Link>    
+                        <Button className='button' onClick={submitEvaluation}>Vertinti</Button>
+                    </div>
                 </>
             )
             :(
@@ -62,6 +64,7 @@ const EvaluationForm = (props) => {
                 
                 </>
             )}
+            </Paper>
         </div>
     )
 }

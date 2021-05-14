@@ -36,6 +36,7 @@ const Product = (props) => {
         setIsEdit(!isEdit)
     }
 
+
     const onDeleteClick = (id)=>{
         confirmAlert({
             title: 'Ar tikrai norite ištrinti prekę?',
@@ -61,8 +62,11 @@ const Product = (props) => {
 
     }
 
+    
+
     return (
         <div>
+            
             <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
                     <Link to={"/product/"+props.id}>
@@ -86,7 +90,7 @@ const Product = (props) => {
                     <IconButton aria-label="delete" onClick={() =>onDeleteClick(props.id)}>
                         <DeleteIcon />
                     </IconButton>
-                    
+
                     <Link to={"/MakeOrder/"+props.id}>
                     <IconButton aria-label="AddShoppingCart">
                     <AddShoppingCartIcon />
@@ -97,6 +101,7 @@ const Product = (props) => {
                 <div style={{display: (isEdit ? 'block' : 'none')}}>
                     <ProductForm update={true} id ={props.id}/>
                 </div>
+
             </Card>
 
         </div>

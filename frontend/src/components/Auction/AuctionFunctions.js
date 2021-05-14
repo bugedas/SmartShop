@@ -33,6 +33,7 @@ export const deleteAuction = (id) => {
         weight: updatedAuction.weight,
         description: updatedAuction.description,
         supplier: updatedAuction.supplier,
+        state: updatedAuction.state,
       })
       .then((response) => {
         alert("updated")
