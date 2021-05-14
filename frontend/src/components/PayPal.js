@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import Button from '@material-ui/core/Button';
 import MakeOrder from './MakeOrder';
+import { Route } from 'react-router';
+import SuccessfulPaymentPage from './SuccessfulPaymentPage';
 
-export default function Paypal() {
+const Paypal = (props) =>  {
 
     const [cancel, setCancel] = useState(false)
+    const [orderCompleted, setOrderCompleted] = useState(false)
     const paypal = useRef()
 
     useEffect(()=> {
@@ -15,10 +18,10 @@ export default function Paypal() {
                     intent: "CAPTURE",
                     purchase_units: [
                         {
-                            description: "Item table",
+                            description: props.productName,
                             amount: {
                                 currency_code: "EUR",
-                                value: 650.00
+                                value: props.productPrice
                             }
                         }
                     ] 
@@ -27,6 +30,9 @@ export default function Paypal() {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
                 console.log(order)
+                if (order.status === "COMPLETED") {
+                    setOrderCompleted(true)
+                }
             },
             onError: (err) => {
                 console.log(err)
@@ -34,17 +40,25 @@ export default function Paypal() {
         }).render(paypal.current)
     }, [])
 
-    return (
+    return (        
         <div>
-            {cancel ? (
-                <MakeOrder />
+            {orderCompleted ? (
+                <SuccessfulPaymentPage />
             ) : (
             <div>
-                <h1>Pasirinkite apmokėjimo būdą</h1>
-                <div ref={paypal}></div>
-                <Button onClick={() => {setCancel(true);}} className='button'>Atšaukti</Button>                
+                {cancel ? (
+                    <MakeOrder />
+                ) : (
+                <div>
+                    <h1>Pasirinkite apmokėjimo būdą</h1>
+                    <div ref={paypal}></div>
+                    <Button onClick={() => {setCancel(true);}} className='button'>Atšaukti</Button>                
+                </div>
+                )}
             </div>
             )}
         </div>
     )
 }
+
+export default Paypal

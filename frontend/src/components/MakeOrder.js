@@ -26,10 +26,11 @@ const MakeOrder = (props) => {
         });
 },[]);
 
+
     return (                
         <div>
             {checkout ? (
-                <PayPal />
+                <PayPal productName={product.Name} productPrice={product.Price}/>
             ) : (
             <Paper elevation={0}>
                 <Menu/>
