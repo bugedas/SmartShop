@@ -67,9 +67,7 @@ const ManageProducts = () => {
 
                   <Product name={product.Name} price={product.Price} about={product.Description} id={product._id}/>
                 ))}          
-
-
-
+                
                 </div>
             </Paper>
         </div>

@@ -13,7 +13,8 @@ import {deleteProduct} from "./PruductFunctions";
 import '../css/ProductStyles.css'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles({
     
@@ -62,7 +63,10 @@ const Product = (props) => {
 
     }
 
-    
+    let history = useHistory();
+    const ConfirmOrder = (props) => {
+        history.push('/MakeOrder/'+ props.id)
+    }
 
     return (
         <div>
@@ -91,11 +95,10 @@ const Product = (props) => {
                         <DeleteIcon />
                     </IconButton>
 
-                    <Link to={"/MakeOrder/"+props.id}>
-                    <IconButton aria-label="AddShoppingCart">
+                    <IconButton aria-label="AddShoppingCart" onClick={() =>ConfirmOrder(props)}>
                     <AddShoppingCartIcon />
                     </IconButton>
-                    </Link>
+
                 </CardActions>
 
                 <div style={{display: (isEdit ? 'block' : 'none')}}>

@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+  const ConfirmOrder = (id)=>{
+    <Link to={"/MakeOrder/"+id}></Link>
+}
+
 const ProductPage = (props) => {
     const classes = useStyles();
     const [product,setProduct]=useState([]);
