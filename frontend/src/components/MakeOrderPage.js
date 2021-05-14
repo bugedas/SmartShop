@@ -1,6 +1,5 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
-import Menu from './Menu'
 import MakeOrder from './MakeOrder'
 
 
@@ -12,9 +11,6 @@ const MakeOrderPage = () => {
                 <MakeOrder/>
    
             </Paper>
-
-
-           
         </div>
     )
 }

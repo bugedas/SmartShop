@@ -91,7 +91,8 @@ auctions.post("/addAuction", function(req,res){
             MadeBy: req.body.madeBy,
             Weight: req.body.weight,
             Description: req.body.description,
-            Supplier: req.body.supplier,
+            Suplier: req.body.supplier,
+            State: req.body.state,
           }
         }
      
