@@ -4,6 +4,7 @@ export const addAuction = (newAuction) => {
     return axios
       .post("http://localhost:5000/auctions/addAuction", {
         name: newAuction.name,
+        startPrice: newAuction.price,
         price: newAuction.price,
         madeBy: newAuction.madeBy,
         weight: newAuction.weight,
@@ -28,6 +29,7 @@ export const deleteAuction = (id) => {
       .post("http://localhost:5000/auctions/updateAuction", {
         id : updatedAuction.id,
         name: updatedAuction.name,
+        startPrice: updatedAuction.startPrice,
         price: updatedAuction.price,
         madeBy: updatedAuction.madeBy,
         weight: updatedAuction.weight,

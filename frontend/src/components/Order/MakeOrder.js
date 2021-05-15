@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper'
-import Menu from './Menu'
+import Menu from '../Core/Menu'
 import Button from '@material-ui/core/Button';
 import { Link, useParams} from "react-router-dom";
 import PayPal from './PayPal';

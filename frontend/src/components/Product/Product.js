@@ -10,7 +10,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ProductForm from './ProductForm'
 import {deleteProduct} from "./PruductFunctions";
-import '../css/ProductStyles.css'
+import '../../css/ProductStyles.css'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link, useHistory } from "react-router-dom";
@@ -33,12 +33,12 @@ const Product = (props) => {
     const [isEdit, setIsEdit] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
-    const onEditClick = () =>{
+    const EditProduct = () =>{
         setIsEdit(!isEdit)
     }
 
 
-    const onDeleteClick = (id)=>{
+    const DeleteProduct = (id)=>{
         confirmAlert({
             title: 'Ar tikrai norite ištrinti prekę?',
             message: 'Ar tikrai norite ištrinti prekę?',
@@ -73,6 +73,7 @@ const Product = (props) => {
             
             <Card className='card' style={{display:(deleted ? 'none' : 'block')}}>
                 <CardContent>
+                    {/* OpenProductPage */}
                     <Link to={"/product/"+props.id}>
                         <Typography variant="h5" component="h2">
                             {props.name}
@@ -88,10 +89,10 @@ const Product = (props) => {
                 </CardContent>
 
                 <CardActions>
-                    <IconButton aria-label="edit" onClick={onEditClick}>
+                    <IconButton aria-label="edit" onClick={EditProduct}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" onClick={() =>onDeleteClick(props.id)}>
+                    <IconButton aria-label="delete" onClick={() =>DeleteProduct(props.id)}>
                         <DeleteIcon />
                     </IconButton>
 

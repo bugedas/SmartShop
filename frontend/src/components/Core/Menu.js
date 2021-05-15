@@ -1,7 +1,7 @@
 import React from 'react'
 import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
-import '../css/MenuStyles.css'
+import '../../css/MenuStyles.css'
 import { Link } from "react-router-dom";
 
 const Menu = () => {

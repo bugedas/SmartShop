@@ -1,7 +1,7 @@
 
 import React, {useState,useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
-import Menu from '../Menu'
+import Menu from '../Core/Menu'
 import axios from "axios";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +11,9 @@ const AuctionPage = (props) => {
 
 
     const [auctions,setAuctions]=useState([]);
+    const [priceBid,setPriceBid]=useState(0);
 
+    //Fetch data
     useEffect(() => { 
             axios
             .post("http://localhost:5000/auctions/getAuctionById",{
@@ -24,16 +26,31 @@ const AuctionPage = (props) => {
             .catch(() => {
               alert("ERROR");
             });
-    },[]); 
+    },[]);
 
-    const onBid = () =>{
 
+    const MakeABet = () =>{
+        //SaveData
+        const updatedAuction ={
+            id: props.match.params.id,
+            name: auctions.Name,
+            startPrice: auctions.StartPrice,
+            price: priceBid,
+            weight: auctions.Weight,
+            description: auctions.Description,
+            supplier: auctions.Suplier,
+            state: auctions.State,
+        }
+        updateAuction(updatedAuction).then((res)=>{
+            window.location.reload(false);
+        });
     }
 
     const stateToNotStarted = () =>{
         const updatedAuction ={
             id: props.match.params.id,
             name: auctions.Name,
+            startPrice: auctions.StartPrice,
             price: auctions.Price,
             weight: auctions.Weight,
             description: auctions.Description,
@@ -49,6 +66,7 @@ const AuctionPage = (props) => {
         const updatedAuction ={
             id: props.match.params.id,
             name: auctions.Name,
+            startPrice: auctions.StartPrice,
             price: auctions.Price,
             weight: auctions.Weight,
             description: auctions.Description,
@@ -64,6 +82,7 @@ const AuctionPage = (props) => {
         const updatedAuction ={
             id: props.match.params.id,
             name: auctions.Name,
+            startPrice: auctions.StartPrice,
             price: auctions.Price,
             madeBy: "madeBy",
             weight: auctions.Weight,
@@ -114,23 +133,22 @@ const AuctionPage = (props) => {
                         )}
                     </div>
                 <Paper elevation={1}>
-
+                                    {console.log(auctions)}
                     <h1>Aukcionas dėl prekės: {auctions.Name} </h1>
-                    <h3>Pradinė Kaina: {auctions.Name}</h3>
+                    <h3>Pradinė Kaina: {auctions.StartPrice}</h3>
                     <h3>Dabartinė Kaina: {auctions.Price}</h3>
                     <h3>Svoris: {auctions.Weight}</h3>
                     <h3>Aprašymas: {auctions.Description}</h3>
                     <h3>Tiekėjas: {auctions.Suplier}</h3>
                     <h3>Būsena: {auctions.State}</h3>
-                    {console.log(auctions)}
                     {auctions.State === 'prasidėjęs' && (
                         <div>
-                            <TextField className='textField' label="Kaina" value={auctions.Price + 1}/* onChange={} */ />
+                            <TextField className='textField' label="Kaina" value={priceBid === 0 ? auctions.Price : priceBid} onChange={e => setPriceBid(e.target.value)} />
                             <Button 
                                 variant="contained"
                                 color="primary"
                                 className='makeBid'
-                                onClick={onBid}
+                                onClick={MakeABet}
                             >
                                 Statyti
                             </Button>

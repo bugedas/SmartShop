@@ -24,6 +24,9 @@ const AuctionSchema = new Schema({
   Price: {
     type: Number
   },
+  StartPrice: {
+    type: Number
+  },
   Made_by: {
     type: String
 

@@ -16,7 +16,7 @@ const AuctionForm = (props) => {
     const [description,setDescription] = useState("");
     const [supplier,setSupplier] = useState("");
 
-    const submitData = () =>{
+    const Submit = () =>{
         if( name == "" || price == ""){
             alert("Pavadinimas ir Kaina privalo būti užpildyti")
         }
@@ -47,7 +47,7 @@ const AuctionForm = (props) => {
                     description: description,
                     supplier: supplier,
                 }
-
+                //Create
                 addAuction(newAuction).then((res)=>{});
             }
         }
@@ -72,7 +72,7 @@ const AuctionForm = (props) => {
                 />
                 <TextField className='textField' label="Tiekėjas" value={supplier} onChange={e => setSupplier(e.target.value)} />
 
-                <Button className='button' onClick={submitData}>Submit</Button>
+                <Button className='button' onClick={Submit}>Submit</Button>
             </form>
 
         </div>

@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import ProductForm from './ProductForm'
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton'
-import '../css/ManageProductsStyle.css'
+import '../../css/ManageProductsStyle.css'
 import axios from "axios";
 const ManageProducts = () => {
 
@@ -31,7 +31,7 @@ const ManageProducts = () => {
 
     const [isAddClicked, setIsAddClicked] = useState(false)
 
-    const onAddClick = () =>{
+    const CreateProduct = () =>{
         setIsAddClicked(true)
     }   
     const onAddClose = () =>{
@@ -48,7 +48,7 @@ const ManageProducts = () => {
                         color="primary"
                         className='addNew'
                         endIcon={<AddIcon/>}
-                        onClick={onAddClick}
+                        onClick={CreateProduct}
                     >
                         Add New
                     </Button>

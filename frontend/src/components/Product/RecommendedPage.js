@@ -1,6 +1,6 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
-import Menu from './Menu'
+import Menu from '../Core/Menu'
 
 const Recommended = () => {
     return (

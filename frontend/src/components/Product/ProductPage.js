@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
-import Menu from './Menu'
+import Menu from '../Core/Menu'
 import EvaluationForm from './EvaluationForm'
 import Evaluation from './Evaluation'
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -33,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 const ProductPage = (props) => {
     const classes = useStyles();
     const [product,setProduct]=useState([]);
+    const [EvaluateProduct,setEvaluateProduct]=useState(false);
+    const OpenForm = () => {
+      setEvaluateProduct(!EvaluateProduct);
+    }
 
      useEffect(() => {
             axios
@@ -68,8 +73,16 @@ const ProductPage = (props) => {
                   </div>
 
                 </Paper>
-                <EvaluationForm productId={props.match.params.id} bought={true}/>
-                {console.log(product)}
+                {!EvaluateProduct && 
+                <Button 
+                                variant="contained"
+                                color="primary"
+                                className='EvaluateProduct'
+                                onClick={OpenForm}
+                            >
+                                Vertinti preke
+                            </Button>}
+                {EvaluateProduct && <EvaluationForm productId={props.match.params.id} checkIfItemBoughByClient={true}/> }
                 <Paper elevation={2}>
                   <List className={classes.root}>
                       {/* Pakeisti kad suktu cikla per visus to produkto komentarus */}

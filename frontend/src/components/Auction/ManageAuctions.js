@@ -30,7 +30,7 @@ const ManageAuctions = () => {
 
     const [isAddClicked, setIsAddClicked] = useState(false)
 
-    const onAddClick = () =>{
+    const CreateAuction = () =>{
         setIsAddClicked(true)
     }   
     const onAddClose= () =>{
@@ -50,7 +50,7 @@ const ManageAuctions = () => {
                         color="primary"
                         className='addNew'
                         endIcon={<AddIcon/>}
-                        onClick={onAddClick}
+                        onClick={CreateAuction}
                     >
                         Add New
                     </Button>

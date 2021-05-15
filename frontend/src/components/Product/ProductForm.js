@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {addProduct,updateProduct} from "./PruductFunctions";
-import '../css/ProductFormStyles.css'
+import '../../css/ProductFormStyles.css'
 import { AlternateEmail } from "@material-ui/icons";
 
 const ProductForm = (props) => {
@@ -13,7 +13,7 @@ const ProductForm = (props) => {
     const [description,setDescription] = useState("");
     const [supplier,setSupplier] = useState("");
 
-    const submitData = () =>{
+    const Submit = () =>{
         if( name == "" || price == ""){
             alert("Pavadinimas ir Kaina privalo būti užildyti")
         }
@@ -36,6 +36,7 @@ const ProductForm = (props) => {
             
             
             }
+            //Create
             else{
                 const newProduct ={
                     name: name,
@@ -70,7 +71,7 @@ const ProductForm = (props) => {
                 />
                 <TextField className='textField' label="Tiekėjas" value={supplier} onChange={e => setSupplier(e.target.value)} />
 
-                <Button className='button' onClick={submitData}>Submit</Button>
+                <Button className='button' onClick={Submit}>Submit</Button>
 
             </form>
             

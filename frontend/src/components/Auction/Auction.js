@@ -31,11 +31,11 @@ const Auction = (props) => {
     const [isEdit, setIsEdit] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
-    const onEditClick = () =>{
+    const EditAuction = () =>{
         setIsEdit(!isEdit)
     }
 
-    const onDeleteClick = (id)=>{
+    const DeleteAuction = (id)=>{
         confirmAlert({
             title: 'Ar tikrai norite ištrinti prekę?',
             message: 'Ar tikrai norite ištrinti prekę?',
@@ -85,10 +85,10 @@ const Auction = (props) => {
                 </CardContent>
 
                 <CardActions>
-                    <IconButton aria-label="edit" onClick={onEditClick}>
+                    <IconButton aria-label="edit" onClick={EditAuction}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" onClick={() =>onDeleteClick(props.id)}>
+                    <IconButton aria-label="delete" onClick={() =>DeleteAuction(props.id)}>
                         <DeleteIcon />
                     </IconButton>
                 </CardActions>
