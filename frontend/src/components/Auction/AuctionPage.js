@@ -32,7 +32,6 @@ const AuctionPage = (props) => {
         updateAuction(startedUpdatedAuction).then((res)=>{
         });
     }
-
     const CheckInLine = () => {
         axios
              .post("http://localhost:5000/auctions/getAuctions")
