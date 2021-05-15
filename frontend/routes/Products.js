@@ -3,8 +3,10 @@ const products = express.Router();
 const cors = require("cors");
 
 const Product = require("../Schemas/Product");
-
+const Order = require("../Schemas/Order");
 const productEvaluation = require("../Schemas/Evaluation");
+const aggrEvaluation = require("../aggrSchemas/aggrEvaluation");
+const aggrOrder = require("../aggrSchemas/aggrOrder");
 
 
 products.use(cors());
@@ -125,6 +127,47 @@ products.post("/addProduct", function(req,res){
     .catch((err) => {
       res.send("error: " + err);
     });
+     
+  
+  })
+
+
+  products.post("/RecommendedProducts", function(req,res){
+
+
+    Product.aggregate([{$project:{_id:{$toString:"$_id"},Name : "$Name",Price : "$Price",Made_by : "$Made_by",Weight : "$Weight",Description : "$Description",Suplier:"$Suplier"}},
+    {$lookup:{from: "agrrevaluations", localField: "_id",foreignField:"_id",as:"evaluation"}},
+    {$lookup:{from: "agrrorders", localField: "_id",foreignField:"_id",as:"order"}}])
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("error: ", daerrorta);
+    });
+
+    
+    aggrEvaluation.deleteMany()
+    .then(() => {
+      productEvaluation.aggregate([{$group: {_id:"$Product_Id", Rating: {$avg:"$Rating"},Count : {$sum :1} }}])
+      .then((_id,Rating,Count) => {
+        aggrEvaluation.create(_id,Rating,Count)
+      })
+      .catch((error) => {
+        console.log("error: ", daerrorta);
+      });
+    }) 
+   
+
+     aggrOrder.deleteMany()
+    .then(() => {
+      Order.aggregate([{$group: {_id:"$Product_Id",Count : {$sum :1} }}])
+      .then((_id,Count) => {
+        aggrOrder.create(_id,Count)
+      })
+      .catch((error) => {
+        console.log("error: ", daerrorta);
+      });
+    }) 
      
   
   })

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Link, useParams} from "react-router-dom";
 import PayPal from './PayPal';
 import axios from "axios";
-
+import {addOrder} from "./OrderFunctions";
 const MakeOrder = (props) => {
     
     const [PayForOrder, setPayForOrder] = useState(false)
@@ -25,6 +25,16 @@ const MakeOrder = (props) => {
           alert("ERROR");
         });
 },[]);
+
+    const submitData = () =>{
+    const newOrder ={
+        price: product.Price,
+        product_id: product._id
+    }
+    addOrder(newOrder).then((res)=>{
+        alert("ok")
+    });
+    }
 
 
     return (                
@@ -47,7 +57,7 @@ const MakeOrder = (props) => {
                     <h3>Svoris: {product.Weight}</h3>
                     <h3>Aprašymas: {product.Description}</h3>
                     <h3>Tiekėjas: {product.Suplier}</h3>
-                    <Button onClick={() => {setPayForOrder(true);}} className='button'>Užsakyti</Button>
+                    <Button onClick={() => {setPayForOrder(true);submitData();}} className='button'>Užsakyti</Button>
                     <Link to="/products" className="btn btn-primary">Atšaukti</Link>                
             </Paper>
             )}
