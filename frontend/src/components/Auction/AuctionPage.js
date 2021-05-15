@@ -28,6 +28,37 @@ const AuctionPage = (props) => {
             });
     },[]);
 
+    const ChangeToActive = (startedUpdatedAuction) => {
+        updateAuction(startedUpdatedAuction).then((res)=>{
+        });
+    }
+
+    const CheckInLine = () => {
+        axios
+             .post("http://localhost:5000/auctions/getAuctions")
+            .then((response) => {
+               const data = response.data;
+               const filteredData = data.filter(filtered => filtered.State === 'neprasidėjes')
+               const oneAuction = filteredData.pop()
+               if(typeof oneAuction != 'undefined'){
+                const startedUpdatedAuction ={
+                    id: oneAuction._id,
+                    name: oneAuction.Name,
+                    startPrice: oneAuction.StartPrice,
+                    price: oneAuction.Price,
+                    weight: oneAuction.Weight,
+                    description: oneAuction.Description,
+                    supplier: oneAuction.Suplier,
+                    state: 'prasidėjęs',
+                }
+                ChangeToActive(startedUpdatedAuction)
+               }
+             })
+             .catch(() => {
+              alert("ERROR");
+             });
+    }
+
 
     const MakeABet = () =>{
         //SaveData
@@ -78,8 +109,11 @@ const AuctionPage = (props) => {
         });
     }
 
-    const stateToEnded = () =>{
-        const updatedAuction ={
+    const SubmitWinner = () =>{
+
+        CheckInLine();
+
+        const ChangeToFinished ={
             id: props.match.params.id,
             name: auctions.Name,
             startPrice: auctions.StartPrice,
@@ -90,7 +124,8 @@ const AuctionPage = (props) => {
             supplier: auctions.Suplier,
             state: 'pasibaigęs',
         }
-        updateAuction(updatedAuction).then((res)=>{
+
+        updateAuction(ChangeToFinished).then((res)=>{
             window.location.reload(false);
         });
     }
@@ -101,7 +136,7 @@ const AuctionPage = (props) => {
             <Paper elevation={0}>
                 <Menu/>
                     <div>
-                        {auctions.State != 'neprasidėjes' && (
+                        {(auctions.State != 'neprasidėjes' && auctions.State != 'pasibaigęs') && (
                             <Button 
                                 variant="contained"
                                 color="primary"
@@ -111,7 +146,7 @@ const AuctionPage = (props) => {
                                 Neprasidejes
                             </Button>
                         )}
-                        {auctions.State != 'prasidėjęs' && (
+                        {(auctions.State != 'prasidėjęs' && auctions.State != 'pasibaigęs') && (
                             <Button 
                                 variant="contained"
                                 color="primary"
@@ -121,14 +156,14 @@ const AuctionPage = (props) => {
                                 Prasidėjęs
                             </Button>
                         )}
-                        {auctions.State != 'pasibaigęs' && (
+                        {(auctions.State != 'neprasidėjes' && auctions.State != 'pasibaigęs') && (
                             <Button 
                                 variant="contained"
                                 color="primary"
                                 className='changeAuctionState'
-                                onClick={stateToEnded}
+                                onClick={SubmitWinner}
                             >
-                                Pasibaigęs
+                                Patvirtinti nugalėtoją
                             </Button>
                         )}
                     </div>
@@ -136,11 +171,17 @@ const AuctionPage = (props) => {
                                     {console.log(auctions)}
                     <h1>Aukcionas dėl prekės: {auctions.Name} </h1>
                     <h3>Pradinė Kaina: {auctions.StartPrice}</h3>
-                    <h3>Dabartinė Kaina: {auctions.Price}</h3>
+                    {auctions.State !== 'pasibaigęs' && 
+                    <h3>Dabartinė Kaina: {auctions.Price}</h3>}
                     <h3>Svoris: {auctions.Weight}</h3>
                     <h3>Aprašymas: {auctions.Description}</h3>
                     <h3>Tiekėjas: {auctions.Suplier}</h3>
                     <h3>Būsena: {auctions.State}</h3>
+                    {auctions.State === 'pasibaigęs' && 
+                        <>
+                            <h1>Laimėtojas - statęs {auctions.Price}EUR</h1>
+                        </>
+                    }
                     {auctions.State === 'prasidėjęs' && (
                         <div>
                             <TextField className='textField' label="Kaina" value={priceBid === 0 ? auctions.Price : priceBid} onChange={e => setPriceBid(e.target.value)} />

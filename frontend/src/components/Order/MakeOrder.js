@@ -8,7 +8,7 @@ import axios from "axios";
 
 const MakeOrder = (props) => {
     
-    const [checkout, setCheckOut] = useState(false)
+    const [PayForOrder, setPayForOrder] = useState(false)
     const [product,setProduct]=useState([]);
     const { id } = useParams()
 
@@ -29,7 +29,7 @@ const MakeOrder = (props) => {
 
     return (                
         <div>
-            {checkout ? (
+            {PayForOrder ? (
                 <PayPal productName={product.Name} productPrice={product.Price}/>
             ) : (
             <Paper elevation={0}>
@@ -47,7 +47,7 @@ const MakeOrder = (props) => {
                     <h3>Svoris: {product.Weight}</h3>
                     <h3>Aprašymas: {product.Description}</h3>
                     <h3>Tiekėjas: {product.Suplier}</h3>
-                    <Button onClick={() => {setCheckOut(true);}} className='button'>Užsakyti</Button>
+                    <Button onClick={() => {setPayForOrder(true);}} className='button'>Užsakyti</Button>
                     <Link to="/products" className="btn btn-primary">Atšaukti</Link>                
             </Paper>
             )}

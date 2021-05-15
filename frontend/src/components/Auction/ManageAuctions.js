@@ -25,7 +25,7 @@ const ManageAuctions = () => {
              .catch(() => {
               alert("ERROR");
              });
-    })
+    },[])
 
 
     const [isAddClicked, setIsAddClicked] = useState(false)
