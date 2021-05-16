@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
@@ -35,6 +37,7 @@ const ProductPage = (props) => {
     const classes = useStyles();
     const [product,setProduct]=useState([]);
     const [EvaluateProduct,setEvaluateProduct]=useState(false);
+    const [productEval,setProductEval]=useState([]);
     const OpenForm = () => {
       setEvaluateProduct(!EvaluateProduct);
     }
@@ -51,6 +54,20 @@ const ProductPage = (props) => {
             .catch(() => {
               alert("ERROR");
             });
+
+            axios
+            .post("http://localhost:5000/products/getProductEvalById",{
+                id:props.match.params.id
+            })
+            .then((response) => {
+              const data = response.data;
+              setProductEval(data);
+            })
+            .catch(() => {
+              alert("ERROR");
+            });
+
+
     },[]);
 
     return (
@@ -85,9 +102,9 @@ const ProductPage = (props) => {
                 {EvaluateProduct && <EvaluationForm productId={props.match.params.id} checkIfItemBoughByClient={true}/> }
                 <Paper elevation={2}>
                   <List className={classes.root}>
-                      {/* Pakeisti kad suktu cikla per visus to produkto komentarus */}
-                      <Evaluation rating={3} title="Komentaro pavadinimas" name="Vardas" description="Komentaras apie preke"/>
-                      <Evaluation rating={1} title="Labai ilgas komentaro pavadinimas, nes reikia suzinot kaip atrodo" name="Vardas Pavarde" description="Kitoks ir gerokai ilgesnis komentaras apie preke tam, kad pasiziuretume kaip atrodo ilgas komentaras"/>
+                     {productEval.map(p=>(
+                         <Evaluation rating={p.Rating} title="Komentaro pavadinimas" name="Vardas" description={p.Comment}/>
+                     ))}
                   </List>
                 </Paper>
             </Paper>

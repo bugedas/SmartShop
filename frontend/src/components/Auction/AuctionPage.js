@@ -61,6 +61,8 @@ const AuctionPage = (props) => {
 
     const MakeABet = () =>{
         //SaveData
+
+        if(auctions.Price < priceBid){
         const updatedAuction ={
             id: props.match.params.id,
             name: auctions.Name,
@@ -74,6 +76,11 @@ const AuctionPage = (props) => {
         updateAuction(updatedAuction).then((res)=>{
             window.location.reload(false);
         });
+        }
+        else{
+            alert("Statymas turi buti didesnis uz dabartine kaina")
+        }
+
     }
 
     const stateToNotStarted = () =>{

@@ -132,6 +132,22 @@ products.post("/addProduct", function(req,res){
   })
 
 
+  products.post("/getProductEvalById", function(req,res){
+
+    productEvaluation.find({
+      Product_Id: req.body.id
+    })
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+        console.log("error: ", daerrorta);
+      });
+     
+  
+  })
+
+
   products.post("/RecommendedProducts", function(req,res){
 
 

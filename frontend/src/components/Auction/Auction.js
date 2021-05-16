@@ -72,7 +72,7 @@ const Auction = (props) => {
                         </Typography>
                     </Link>
                     <Typography className={classes.pos} color="textSecondary">
-                       pradinė kaina: {props.price}
+                       Dabartinė kaina: {props.price}
                     </Typography>
 
                     <Typography variant="body2" component="p">

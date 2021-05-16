@@ -7,23 +7,22 @@ import Product from './Product'
 
 
 const Recommended = () => {
+  const [products,setProducts]=useState([]);
+  
+  useEffect(() => { 
 
-    const [products,setProducts]=useState([]);
-
-    useEffect(() => { 
-
-            axios
-            .post("http://localhost:5000/products/RecommendedProducts")
-            .then((response) => {
-              const data = response.data;
-              console.log("da",data)
-              setProducts(data);
-            })
-            .catch(() => {
-              alert("ERROR");
-            });
- 
-    },[]);
+    axios
+    .post("http://localhost:5000/products/RecommendedProducts")
+    .then((response) => {
+      const data = response.data;
+      console.log("da",data)
+      setProducts(data);
+    })
+    .catch(() => {
+      alert("ERROR");
+    });
+  
+  },[]);
 
 
 
