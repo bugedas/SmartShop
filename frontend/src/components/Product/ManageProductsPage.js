@@ -1,23 +1,25 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Menu from '../Core/Menu'
-import ManageAuctions from './ManageAuctions'
+import ManageProducts from './ManageProducts'
 
-const ManageAuctionsPage = () => {
+
+const ManageProductsPage = () => {
     return (
         <div>
-            
             <Paper elevation={0}>
                 <Menu/>
 
-                <h1>Aukcionai</h1>
+                <h1>Prekės</h1>
 
-                <ManageAuctions/>
+                <ManageProducts/>
 
             </Paper>
 
+
+           
         </div>
     )
 }
 
-export default ManageAuctionsPage
+export default ManageProductsPage

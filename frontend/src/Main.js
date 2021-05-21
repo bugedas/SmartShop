@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import MainPage from './components/MainPage';
-import Products from './components/ManageProductsPage';
-import ProductPage from './components/ProductPage';
+import MainPage from './components/Core/MainPage';
+import Products from './components/Product/ManageProductsPage';
+import ProductPage from './components/Product/ProductPage';
 import Auctions from './components/Auction/ManageAuctionsPage';
 import AuctionPage from './components/Auction/AuctionPage';
-import Recommended from './components/RecommendedPage';
-import MakeOrder from './components/MakeOrderPage';
+import Recommended from './components/Product/RecommendedPage';
+import MakeOrder from './components/Order/MakeOrderPage';
 
 const Main = () => {
   return (

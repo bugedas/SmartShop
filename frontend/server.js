@@ -27,6 +27,8 @@ app.use("/products", Products);
 var Auctions = require("./routes/Auction");
 app.use("/auctions", Auctions);
 
+var Orders = require("./routes/Orders");
+app.use("/orders", Orders);
 
 app.listen(port, function () {
   console.log("Server is running on port: " + port);

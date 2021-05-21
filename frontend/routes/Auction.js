@@ -18,6 +18,7 @@ auctions.post("/addAuction", function(req,res){
     const Auctiondata={
         State: "neprasidėjes",
         Name: req.body.name,
+        StartPrice: req.body.price,
         Price: req.body.price,
         Made_by: req.body.madeBy,
         Weight: req.body.weight,
@@ -86,6 +87,7 @@ auctions.post("/addAuction", function(req,res){
     
         const updateDoc = {
           $set:{
+            StartPrice: req.body.startPrice,
             Name: req.body.name,
             Price: req.body.price,
             MadeBy: req.body.madeBy,

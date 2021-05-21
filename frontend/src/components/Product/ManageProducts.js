@@ -1,47 +1,45 @@
 import React, {useState, useEffect} from 'react'
 import Paper from '@material-ui/core/Paper'
-import Auction from './Auction'
+import Product from './Product'
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
-import AuctionForm from './AuctionForm'
+import ProductForm from './ProductForm'
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton'
 import '../../css/ManageProductsStyle.css'
 import axios from "axios";
+const ManageProducts = () => {
 
-
-const ManageAuctions = () => {
-
-
-    const [auctions,setAuctions]=useState([]);
+    const [products,setProducts]=useState([]);
 
     useEffect(() => { 
-             axios
-             .post("http://localhost:5000/auctions/getAuctions")
-            .then((response) => {
-               const data = response.data;
-               setAuctions(data);
-             })
-             .catch(() => {
-              alert("ERROR");
-             });
-    },[])
 
+            axios
+            .post("http://localhost:5000/products/getProduct")
+            .then((response) => {
+              const data = response.data;
+              setProducts(data);
+            })
+            .catch(() => {
+              alert("ERROR");
+            });
+
+
+    });
+
+    
 
     const [isAddClicked, setIsAddClicked] = useState(false)
 
-    const CreateAuction = () =>{
+    const CreateProduct = () =>{
         setIsAddClicked(true)
     }   
-    const onAddClose= () =>{
+    const onAddClose = () =>{
         setIsAddClicked(false)
     }   
 
-
-
     return (
         <div>
-            
             <Paper className='paper' elevation={3} style={{display: 'flex', flexDirection:'column'}}>
 
                 <div className='centerAddNew'>
@@ -50,7 +48,7 @@ const ManageAuctions = () => {
                         color="primary"
                         className='addNew'
                         endIcon={<AddIcon/>}
-                        onClick={CreateAuction}
+                        onClick={CreateProduct}
                     >
                         Add New
                     </Button>
@@ -59,19 +57,21 @@ const ManageAuctions = () => {
                         <IconButton aria-label="close" onClick={onAddClose}>
                             <CloseIcon />
                         </IconButton>
-                        <AuctionForm/>
+                        <ProductForm/>
                     </div>
                 </div>
                 
                 <div style={{display: 'flex', flexDirection:'row', padding: '50px', flexFlow: 'row wrap'}}>
-                    {auctions.map(auction=> (
-                        <Auction name={auction.Name} price={auction.Price} about={auction.Description} id={auction._id} state={auction.State}/>
-                    ))}
+
+                {products.map(product=> (
+
+                  <Product name={product.Name} price={product.Price} about={product.Description} id={product._id}/>
+                ))}          
+                
                 </div>
             </Paper>
-
         </div>
     )
 }
 
-export default ManageAuctions
+export default ManageProducts
