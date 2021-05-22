@@ -11,7 +11,14 @@ const orderSchema = new Schema({
   },
   Product_Id:{
       type: String
-  }
+  },
+  Order_Id:{
+    type: String
+  },
+  State:{
+    type: String,
+    enum: ['laukiama atsiėmimo','nepatvirtintas','laukiama apmokėjimo','atšauktas']
+  },
   
 });
 

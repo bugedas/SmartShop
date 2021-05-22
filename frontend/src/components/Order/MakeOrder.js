@@ -6,11 +6,13 @@ import { Link, useParams} from "react-router-dom";
 import PayPal from './PayPal';
 import axios from "axios";
 import {addOrder} from "./OrderFunctions";
+var crypto = require("crypto");
 const MakeOrder = (props) => {
     
     const [PayForOrder, setPayForOrder] = useState(false)
     const [product,setProduct]=useState([]);
     const { id } = useParams()
+    const ord_id = crypto.randomBytes(20).toString('hex');
 
     useEffect(() => {
         axios
@@ -26,10 +28,11 @@ const MakeOrder = (props) => {
         });
 },[]);
 
-    const submitData = () =>{
+    const submitData = () =>{        
     const newOrder ={
         price: product.Price,
-        product_id: product._id
+        product_id: product._id,
+        order_id: ord_id,
     }
     addOrder(newOrder).then((res)=>{
         alert("ok")
@@ -40,7 +43,7 @@ const MakeOrder = (props) => {
     return (                
         <div>
             {PayForOrder ? (
-                <PayPal productName={product.Name} productPrice={product.Price}/>
+                <PayPal orderID={ord_id} productName={product.Name} productPrice={product.Price}/>
             ) : (
             <Paper elevation={0}>
                 <Menu/>
