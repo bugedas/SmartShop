@@ -33,7 +33,7 @@ const Recommended = () => {
 
                 <h1>Rekomenduojamos Prekės</h1>
 
-                {products.sort((a, b) => a.evaluation[0].Rating - b.evaluation[0].Rating).filter(p=> p.order[0].Count > 3 && p.evaluation[0].Count>3).slice(0,5).map(p=>(
+                {products.sort((a, b) => a.evaluation[0].Rating - b.evaluation[0].Rating).filter(p=> p.order[0].Count > 3 && p.evaluation[0].Count>3  ).slice(0,5).map(p=>(
                    <Product name={p.Name} price={p.Price} about={p.Description} id={p._id}/>
                   ))}
 
