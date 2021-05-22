@@ -41,6 +41,7 @@ const Paypal = (props) =>  {
                 const order = await actions.order.capture()
                 console.log(order)
                 if (order.status === "COMPLETED") {                    
+                    let k = await stateToWaitingForPickup();
                     setOrderCompleted(true)
                 }
             },
