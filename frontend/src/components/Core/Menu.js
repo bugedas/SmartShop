@@ -21,7 +21,9 @@ const Menu = () => {
                 <Link to="/recommended">
                     <MenuItem onClick='#'>Rekomenduojamos Prekės</MenuItem>
                 </Link>
+                <Link to="/map">
                     <MenuItem onClick='#'>Žemėlapis</MenuItem>
+                </Link>
                 </div>
             </Paper>
 

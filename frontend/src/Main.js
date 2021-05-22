@@ -8,6 +8,7 @@ import Auctions from './components/Auction/ManageAuctionsPage';
 import AuctionPage from './components/Auction/AuctionPage';
 import Recommended from './components/Product/RecommendedPage';
 import MakeOrder from './components/Order/MakeOrderPage';
+import MapRoute from './components/Order/MapRoute';
 
 const Main = () => {
   return (
@@ -19,6 +20,7 @@ const Main = () => {
       <Route exact path='/auction/:id' component={AuctionPage} ></Route>
       <Route exact path='/recommended' component={Recommended}></Route>
       <Route exact path='/MakeOrder/:id' component={MakeOrder}></Route>
+      <Route exact path='/map' component={MapRoute}></Route>
     </Switch>
   );
 }
